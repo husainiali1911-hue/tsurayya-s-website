@@ -1,0 +1,154 @@
+<!DOCTYPE html>    
+<html lang="id">    
+<head>    
+  <meta charset="UTF-8" />    
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>    
+  <title>Profil Saya</title>    
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@600&display=swap" rel="stylesheet" />    
+  <style>    
+    * { box-sizing: border-box; }    
+    
+    body {    
+      margin: 0;    
+      font-family: 'Quicksand', sans-serif;    
+      background: linear-gradient(to bottom, #1b2735, #090a0f);    
+      color: white;    
+      min-height: 100vh;    
+      display: flex;    
+      justify-content: center;    
+      align-items: center; /* tengah vertikal */    
+      padding: 10px; /* beri padding kecil agar tidak mepet layar */
+    }    
+    
+    .content-box {    
+      background-color: rgba(0, 0, 0, 0.4);    
+      border: 1px solid #ffeb3b55;    
+      backdrop-filter: blur(12px);    
+      padding: 30px 20px 30px 20px; /* padding bawah standar */
+      width: 100%;    
+      max-width: 400px;    
+      max-height: 90vh; /* maksimal tinggi 90% viewport */
+      text-align: center;    
+      box-shadow: 0 0 20px rgba(255, 235, 59, 0.2);    
+      display: flex;    
+      flex-direction: column;    
+      overflow-y: auto; /* aktifkan scroll vertikal */
+      border-radius: 12px;
+    }    
+    
+    .profile-img {    
+      width: 320px;    
+      height: 320px;    
+      border-radius: 50%;    
+      object-fit: cover;    
+      border: 3px solid #ffeb3b;    
+      margin: 0 auto 20px;    
+      box-shadow: 0 0 30px rgba(255, 235, 59, 0.4);    
+      max-width: 90vw;    
+      flex-shrink: 0; /* supaya tidak menyusut */
+    }    
+    
+    .text-group {
+      margin-top: auto;  /* dorong turun, agar tepat di atas linktree */
+      flex-shrink: 0;
+    }
+    
+    h3 {    
+      font-size: 1.3rem;    
+      margin: 0 0 5px;    
+      line-height: 1.3;    
+    }    
+    
+    .bio {    
+      font-size: 0.8rem;    
+      margin: 0 0 20px;    
+      color: #ccc;    
+    }    
+    
+    .linktree {    
+      display: flex;    
+      flex-direction: column;    
+      gap: 8px;    
+      margin-bottom: 15px;  /* beri jarak bawah sebelum tombol next */
+      flex-shrink: 0;
+    }    
+    
+    .linktree a {    
+      text-decoration: none;    
+      padding: 10px 12px;    
+      font-size: 0.85rem;    
+      background-color: rgba(255, 255, 255, 0.1);    
+      color: #ffeb3b;    
+      border: 1px solid #ffeb3b;    
+      border-radius: 6px;    
+      text-align: center;    
+      transition: all 0.3s ease;    
+      font-weight: 600;    
+    }    
+    
+    .linktree a:hover {    
+      background-color: rgba(255, 235, 59, 0.2);    
+      color: white;    
+    }    
+    
+    .next-button {
+      padding: 10px 24px;
+      font-size: 1rem;
+      background-color: rgba(255, 235, 59, 0.8);
+      color: #000;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      box-shadow: 0 0 10px rgba(255, 235, 59, 0.6);
+      transition: background-color 0.3s ease;
+      font-weight: 600;
+      align-self: center; /* geser ke tengah */
+      margin-bottom: 10px;
+    }
+
+    .next-button:hover {
+      background-color: rgba(255, 235, 59, 1);
+    }
+
+    footer {    
+      font-size: 0.6rem;    
+      color: #888;    
+      flex-shrink: 0;
+      margin-top: auto; /* dorong footer ke bawah konten */
+      text-align: center;
+    }    
+
+    /* Optional: styling scrollbar agar lebih modern */
+    .content-box::-webkit-scrollbar {
+      width: 6px;
+    }
+    .content-box::-webkit-scrollbar-thumb {
+      background-color: rgba(255,235,59,0.4);
+      border-radius: 3px;
+    }
+  </style>    
+</head>    
+<body>    
+    
+  <div class="content-box">
+    <img src="IMG-20240814-WA0005.jpg" alt="Foto Tsurayya" class="profile-img" />
+    
+    <div class="text-group">
+      <h3>Tsurayya Khoirunnisa<br>Al-Mubarokah</h3>    
+      <div class="bio">Mahasiswi jurusan ilmu filsafat Islam yang senang mencoba hal baru dan sakaw akan keilmuan ✨</div>    
+    </div>
+    
+    <div class="linktree">
+      <a href="index2.html">Do'a</a>    
+      <a href="index3.html">Puisi</a>  
+      <a href="index5.html">48 Daftar Nama yang Bermakna "Bintang"</a>    
+      <a href="index4.html">Lihat Portofolio</a>    
+    </div>
+
+    <button class="next-button" onclick="location.href='index6.html'">Next</button>
+    
+    <footer>© 2025 by Kamu</footer>    
+  </div>    
+    
+</body>    
+</html>

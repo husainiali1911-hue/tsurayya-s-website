@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Profil Tsuur</title>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500&display=swap" rel="stylesheet"/>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
+      color: #fff;
+      font-family: 'Quicksand', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+      text-align: center;
+      position: relative;
+      flex-direction: column;
+    }
+
+    /* Teks background berulang memenuhi seluruh viewport */
+    .background-text {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      z-index: 0;
+
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(20vw, 1fr)); /* kolom diperbesar */
+      grid-auto-rows: 6vh; /* baris diperbesar */
+      gap: 0;
+
+      opacity: 0.05;
+      user-select: none;
+      font-size: 1.8vw;
+      font-weight: 700;
+      color: #ffeb3b;
+      line-height: 1.1;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      /* white-space dihapus supaya kata bisa wrap */
+    }
+
+    .background-text span {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      user-select: none;
+      padding: 0 8px; /* beri padding kiri kanan */
+      margin: 0;
+      word-break: break-word; /* agar kata panjang bisa pecah */
+    }
+
+    /* Foto background besar transparan */
+    .background-photo {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 80vw;
+      height: 80vh;
+      max-width: 600px;
+      max-height: 600px;
+      transform: translate(-50%, -50%);
+      opacity: 0.15;
+      object-fit: cover;
+      border-radius: 20px;
+      filter: grayscale(50%) brightness(80%) contrast(90%);
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .stars {
+      width: 100%;
+      height: 100%;
+      background: transparent url('https://raw.githubusercontent.com/ManzDev/cursos-assets/main/starfield/stars.png') repeat;
+      position: absolute;
+      top: 0;
+      left: 0;
+      animation: moveStars 200s linear infinite;
+      z-index: 2;
+    }
+
+    @keyframes moveStars {
+      from { background-position: 0 0; }
+      to { background-position: -10000px 5000px; }
+    }
+
+    #text-container {
+      position: relative;
+      max-width: 85%;
+      font-size: 1.3rem;
+      line-height: 1.8;
+      opacity: 1;
+      transition: opacity 1s ease;
+      min-height: 150px;
+      z-index: 3;
+      white-space: pre-wrap;
+      background-color: rgba(0, 0, 0, 0.4);
+      padding: 20px 30px;
+      border-radius: 15px;
+      box-shadow: 0 0 20px rgba(255, 235, 59, 0.3);
+    }
+
+    .fade-out {
+      opacity: 0;
+    }
+
+    .cursor {
+      display: inline-block;
+      width: 8px;
+      height: 1.2em;
+      background-color: #fff;
+      animation: blink 1s step-end infinite;
+      margin-left: 2px;
+    }
+
+    @keyframes blink {
+      50% { background-color: transparent; }
+    }
+
+    .next-button {
+      opacity: 0;
+      padding: 12px 32px;
+      font-size: 1.1rem;
+      background-color: rgba(255, 255, 255, 0.1);
+      color: #ffeb3b;
+      border: 1px solid #ffeb3b;
+      border-radius: 12px;
+      backdrop-filter: blur(10px);
+      cursor: pointer;
+      transition: all 0.4s ease-in-out;
+      pointer-events: none;
+      box-shadow: 0 0 10px rgba(255, 235, 59, 0.3);
+      position: absolute;
+      bottom: 30px;
+      right: 30px;
+      z-index: 3;
+      text-decoration: none;
+    }
+
+    .next-button:hover {
+      background-color: rgba(255, 255, 255, 0.2);
+      color: #fff;
+      box-shadow: 0 0 20px rgba(255, 235, 59, 0.6);
+    }
+
+    .next-button.show {
+      opacity: 1;
+      pointer-events: auto;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Background teks berulang -->
+  <div class="background-text" aria-hidden="true" id="backgroundText"></div>
+
+  <!-- Foto besar transparan di background -->
+  <img src="Red and White Dynamic Soccer Match Instagram Post_20250728_2327_0000.jpg" alt="" class="background-photo" />
+
+  <div class="stars"></div>
+
+  <div id="text-container">
+    <span id="typing-text"></span><span class="cursor"></span>
+  </div>
+
+  <button id="nextBtn" class="next-button" onclick="location.href='halaman3.html'">Next</button>
+
+  <script>
+    // Generate span background text otomatis agar memenuhi seluruh viewport
+    (function() {
+      const container = document.getElementById('backgroundText');
+      const texts = ['lu sehat?', 'sombong banget sih'];
+
+      // Lebar dan tinggi kolom sesuai css grid di atas
+      const colWidthVW = 20;
+      const rowHeightVH = 6;
+
+      // Hitung jumlah kolom dan baris dari viewport dan ukuran kolom/baris
+      const cols = Math.ceil(window.innerWidth / (window.innerWidth * colWidthVW / 100));
+      const rows = Math.ceil(window.innerHeight / (window.innerHeight * rowHeightVH / 100));
+
+      const totalSpans = cols * rows;
+
+      for(let i = 0; i < totalSpans; i++) {
+        const span = document.createElement('span');
+        span.textContent = texts[i % texts.length];
+        container.appendChild(span);
+      }
+    })();
+
+    // --- Script typing teks utama ---
+    const paragraphs = [
+      `Selamat ulang tahun yang ke 22 tahun ya, Tsuur. Semoga diumur yang sekarang ini lebih banyak keberkahan dalam hidup, makin bertambah bakti kamu sama Abi & Umi, semakin membanggakan juga pastinya, semoga tercapai semua`
+    ];
+
+    const listWords = [
+      "Keinginan",
+      "Kepengenan",
+      "Kemauan",
+      "Ambisi",
+      "Cita-cita",
+      "Hajat",
+      "Mimpi",
+      "Harapan",
+      "Munajat",
+      "Nazaar"
+    ];
+
+    const closingParagraph = `Gue cuma bisa bikin website ini buat hadiah ulang tahun lo, semoga lo suka yaa.
+Happy Birthday, Babe.`;
+
+    const container = document.getElementById("text-container");
+    const typingText = document.getElementById("typing-text");
+    const nextBtn = document.getElementById("nextBtn");
+    const cursor = document.querySelector(".cursor");
+
+    let charIndex = 0;
+    const speed = 50;
+
+    function typeText(text, callback) {
+      if (charIndex < text.length) {
+        typingText.textContent += text.charAt(charIndex);
+        charIndex++;
+        setTimeout(() => typeText(text, callback), speed);
+      } else {
+        setTimeout(callback, 700);
+      }
+    }
+
+    function typeList(words, index, callback) {
+      if (index < words.length) {
+        typingText.textContent = "";
+        charIndex = 0;
+        typeText(words[index], () => {
+          setTimeout(() => {
+            typeList(words, index + 1, callback);
+          }, 800);
+        });
+      } else {
+        callback();
+      }
+    }
+
+    function startTyping() {
+      charIndex = 0;
+      typeText(paragraphs[0], () => {
+        typeList(listWords, 0, () => {
+          typingText.textContent = "";
+          charIndex = 0;
+          typeText(closingParagraph, () => {
+            cursor.style.display = "none";
+            setTimeout(() => {
+              container.classList.add("fade-out");
+              setTimeout(() => {
+                container.style.display = "none";
+                nextBtn.classList.add("show");
+              }, 1000);
+            }, 1000);
+          });
+        });
+      });
+    }
+
+    startTyping();
+  </script>
+
+</body>
+</html>

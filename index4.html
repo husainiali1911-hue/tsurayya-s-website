@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portofolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Quicksand', sans-serif;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      overflow: hidden;
+    }
+
+    /* Background gradasi malam */
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(to bottom, #0d1b2a, #000);
+      z-index: -3;
+    }
+
+    /* Efek bintang */
+    .stars {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 200%;
+      height: 200%;
+      background: transparent;
+      box-shadow: 
+        100px 200px white, 400px 100px white, 600px 300px white,
+        900px 200px white, 1200px 400px white, 1500px 150px white,
+        300px 500px white, 800px 600px white, 1300px 700px white;
+      animation: moveStars 100s linear infinite;
+      z-index: -2;
+    }
+
+    .stars::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 200%;
+      height: 200%;
+      background: transparent;
+      box-shadow: 
+        200px 100px white, 500px 400px white, 700px 200px white,
+        1000px 300px white, 1400px 500px white, 1600px 250px white,
+        400px 700px white, 900px 800px white, 1350px 650px white;
+      animation: moveStars 150s linear infinite;
+    }
+
+    @keyframes moveStars {
+      from { transform: translateY(0); }
+      to { transform: translateY(-1000px); }
+    }
+
+    /* Efek kerlip */
+    @keyframes twinkle {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.3; }
+    }
+    .stars, .stars::after {
+      animation: twinkle 2s infinite alternate, moveStars 100s linear infinite;
+    }
+
+    .container {
+      background: rgba(0, 0, 0, 0.5);
+      padding: 20px;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 235, 59, 0.4);
+      max-width: 700px;
+      text-align: center;
+      box-shadow: 0 0 20px rgba(255, 235, 59, 0.1);
+    }
+
+    h1 {
+      margin-bottom: 20px;
+      color: whitesmoke;
+    }
+
+    h2 {
+      margin: 25px 0 15px;
+      color: #ffeb3b;
+    }
+
+    video {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      object-fit: cover;
+      border-radius: 10px;
+      border: 1px solid rgba(255, 235, 59, 0.3);
+      background: black;
+      margin-bottom: 20px;
+    }
+
+    a {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 10px 16px;
+      background: rgba(255,255,255,0.1);
+      color: #ffeb3b;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: 600;
+      border: 1px solid #ffeb3b;
+      transition: all 0.3s ease;
+    }
+
+    a:hover {
+      background: rgba(255,235,59,0.2);
+      color: white;
+    }
+  </style>
+</head>
+<body>
+  <div class="stars"></div>
+
+  <div class="container">
+    <h1>Karya</h1>
+
+    <h2>Film Pendek : Pandangan</h2>
+    <video controls>
+      <source src="PANDANGANN.mp4" type="video/mp4">
+      Browser Anda tidak mendukung pemutaran video.
+    </video>
+
+    <h2>Presentasi</h2>
+    <video controls>
+      <source src="presentasi_TSURAYYA.mp4" type="video/mp4">
+      Browser Anda tidak mendukung pemutaran video.
+    </video>
+
+    <a href="index.html">Kembali</a>
+  </div>
+</body>
+</html>
